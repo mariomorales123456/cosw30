@@ -1,10 +1,11 @@
+<!DOCTYPE html>
+<?php 
 /*
 Mario Morales
 Lab 1 PHP 
 8/28/19
 */
-
-<!DOCTYPE html>
+?>
 <html>
     <head>
         <title>My First PHP Page</title>
