@@ -37,9 +37,9 @@ Lab 1 PHP
         <a href="https://github.com/mariomorales123456/cosw30">My GitHub!</a>
         </p>
         <?php
-            echo '<p>I spend a lot of time on <a href="www.reddit.com">Reddit</a> main page
+            echo '<p>I spend a lot of time on <a href="https://www.reddit.com/">Reddit</a> main page
             because it is my main source of major news. Im also a TCG nerd so I look at
-            <a href="www.mtgstocks.com">MTGstocks</a> a website that lists changes in card 
+            <a href="https://www.mtgstocks.com/news">MTGstocks</a> a website that lists changes in card 
             prices. </p>
             <p>This assignment was really difficult just because there was so many different
             steps in setting up three different accounts. However the actual coding part
