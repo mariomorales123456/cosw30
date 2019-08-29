@@ -10,7 +10,7 @@ Lab 1 PHP
         <title>My First PHP Page</title>
         <style>
             body {
-                background-color: blue;
+                background-color: teal;
                 color: white;
             }
             h1 {
