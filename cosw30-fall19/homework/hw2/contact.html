@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Homework 2</title>
+        <style>
+            form, h1 {
+                background-color: #d9eeec;
+                border-radius: 0.5em;
+                padding: 0.5em;
+            }
+            body {
+                background-color: #3c70a4;
+            }
+            h1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Rick Grimes for President</h1>
+        <form action="process_contact.php" method="post" target="_blank">
+            <fieldset>
+                <legend>Political Campaign Supporter</legend>
+                    <label for="first_name">First Name:<input type="text" name="first_name" required></label><br>
+                    <label for="last_name">Last Name:<input type="text" name="last_name" required></label><br>
+                    <label for="email">Email: <input type="email" name="email" required></label><br>
+                    <label for="gender">Gender: <select name="gender" required>
+                        <option hidden disabled selected value> -- select an option -- </option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Prefer Not to Say">Prefer Not to Say</option>
+                    </select></label>
+                    <div>
+                        <label>Age:
+                            <label><input type="radio" name="age" value="18-30" required>18-30</label>
+                            <label><input type="radio" name="age" value="31-50">31-50</label>
+                            <label><input type="radio" name="age" value="51-100">51-100</label>
+                        </label>
+                    </div>
+                    <div>
+                        <label for="interests">Interests:
+                            <label><input type="checkbox" name="interests[]" value="Surfing">Surfing</label>
+                            <label><input type="checkbox" name="interests[]" value="Baseball">Baseball</label>
+                            <label><input type="checkbox" name="interests[]" value="Basketball">Basketball</label>
+                            <label><input type="checkbox" name="interests[]" value="Bowling">Bowling</label>
+                            <label><input type="checkbox" name="interests[]" value="Pool">Pool</label>
+                            <label><input type="checkbox" name="interests[]" value="Swimming">Swimming</label>
+                        </label>
+                    </div>
+                    <label for="contribution">Contribution Amount: <input type="number" name="contribution" value="0" min="0"></label>
+                    <div>
+                        <label for="signup">Sign up for our mailing list?:
+                            <label><input type="checkbox" name="signup" value="yes" checked></label>
+                        </label>
+                    </div>
+                    <label for="comments">Comments: <br><textarea name="comments" maxlength="200"></textarea></label><br>
+
+                    <input type="submit" value="Thank you!">
+                
+            </fieldset>
+        </form>
+</html>
