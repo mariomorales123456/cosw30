@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset"UTF-8">
+        <title>Homework 4</title>
+        <style>
+            html,
+            body {
+                height: 100%;
+                background-color:  #00628B;
+                }
+
+            .container {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                }
+            #populationLink {
+                background-color: #E6E6DC;  
+                border-radius: 5px;
+                color: black;
+                padding: .5em;
+                text-decoration: none;
+                margin: 1em;
+                display: block;
+            }
+            #formDiv {
+                background-color: #E6E6DC;
+                text-align: center;
+                padding: 3em 1em;
+                border-radius: 5px;
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="formDiv">
+                <h1 id="test">Word Generator</h1>
+                <p>Please enter 5 or more words, each seperated by a space</p>
+                <form action="quote_process.php" method="POST" target="_blank">
+                    <label for="userText">Enter sentence:<input type="text" name="userText" id="userText"></label>
+                    <input type="submit" value="Submit" id="submitButton">
+                </form>
+            </div>
+        <div>
+            <a href="population.php" id="populationLink" target="_blank">Population Charts</a>
+        </div>
+        </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script type="application/javascript">
+              /*global $*/
+              
+             $(document).ready(function(){
+              $("#submitButton").hover(function(){
+                     var words = $("#userText").val().split(" ");
+                     if(words.length < 5) {
+                        alert("Not Enough Words");
+                     }
+                });
+            });
+        </script>
+</html>
