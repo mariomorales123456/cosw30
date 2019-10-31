@@ -1,25 +1,33 @@
 <?php
 // Add the database connection
+include('database.php');
 /*
 *   CHECK IF THE FORM HAS BEEN SUBMITTED AND INSERT
 *   NEW USER INTO THE DATABASE
 */
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    
+    
 }
 /*
 *   QUERY THE DATABASE AND STORE ALL USERS INTO A VARIABLE
 */
 // Create your query
-$query = 'SELECT * FROM USER';
+$query = 'SELECT * FROM USER_MORALES';
 // Run your query
 $result = mysqli_query($connection, $query);
 // Check if the database returned anything
 if($result) {
-    while($row = mysqli_fetch_array($result)){
+    //while($row = mysqli_fetch_array($result)){
+    //$row = mysqli_fetch_array($result);
+    $rows = mysqli_fetch_all($result);
+        //print_r($row);
         // Output the results
-    }
+    //}
 } else {
     // Output an error
+    echo('huhhh');
 }
 ?>
 
@@ -59,12 +67,16 @@ if($result) {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+            <?php
+            foreach($rows as $row){
+            echo "<tr>
+                <td>$row[1]</td>
+                <td>$row[2]</td>
+                <td>$row[3]</td>
+                <td>$row[4]</td>
+            </tr>";
+            }
+            ?>
         </tbody>
     </table>
 </body>
