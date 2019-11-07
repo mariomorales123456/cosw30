@@ -96,7 +96,6 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
                 <th>Password</th>
                 <th>Update</th>
                 <th>Delete</th>
-                <th>Test</th>
             </tr>
         </thead>
         <tbody>
@@ -121,7 +120,6 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
                          <input type=\"hidden\" name=\"row_action\" value=\"deleteUser\">
                          <td><input type=\"submit\" value=\"Delete\"></td>
                          </form>
-                         <td><a href=\"update_user.php?id=$row[0]\">Link</a></td>
                          </tr>";
                     }
                  }

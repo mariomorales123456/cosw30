@@ -6,11 +6,17 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 $user_id = $_GET['row_id'];
 
-$selectQuery = "SELECT FROM USER_MORALES WHERE user_id=$user_id";
+$selectQuery = "SELECT * FROM USER_MORALES WHERE user_id=$user_id";
                     
 $selectResult = mysqli_query($connection, $selectQuery);
 
-$userInfoArray = mysqli_fetch_all($selectResult);
+$userInfoArray = mysqli_fetch_assoc($selectResult);
+
+$first_name = $userInfoArray['first_name'];
+$last_name = $userInfoArray['last_name'];
+$email = $userInfoArray['email'];
+$password = $userInfoArray['password'];
+
 
 }
 
@@ -22,15 +28,15 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
              $last_name = $_POST['last_name'];
              $email = $_POST['email'];
              $password = $_POST['password'];    
-        
-             $insertQuery = "UPDATE USER_MORALES SET
+             $user_id = $_POST['user_id'];
+             $updateQuery = "UPDATE USER_MORALES SET
                                 first_name = '$first_name',
                                 last_name = '$last_name',
                                 email = '$email',
                                 password = '$password'
                                 WHERE user_id = $user_id";
                     
-             $insertResult = mysqli_query($connection, $insertQuery);
+             $updateResult = mysqli_query($connection, $updateQuery);
              
              header('Location: crud.php');
              exit;
@@ -55,20 +61,23 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div>
         <h1>Update User</h1>
         <form class="auto_margin" action="update_user.php" method="POST">
+            
+            <input type="hidden" name="user_id" value="<?php echo $user_id ?>">
+            
             <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" value="<?php echo $userInfoArray[1] ?>"><br>
+            <input type="text" id="first_name" name="first_name" value="<?php echo $first_name ?>"><br>
 
             <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" value="<?php echo $userInfoArray[2] ?>"><br>
+            <input type="text" id="last_name" name="last_name" value="<?php echo $last_name ?>"><br>
 
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="<?php echo $userInfoArray[3] ?>"><br>
+            <input type="email" id="email" name="email" value="<?php echo $email ?>"><br>
 
             <label for="password">Password</label>
-            <input type="password" id="password" name="password" value="<?php echo $userInfoArray[4] ?>"><br>
+            <input type="text" id="password" name="password" value="<?php echo $password ?>"><br>
             
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password"><br>
+            <input type="text" id="confirm_password" name="confirm_password"><br>
 
             <input type="submit" value="Update">
         </form>
