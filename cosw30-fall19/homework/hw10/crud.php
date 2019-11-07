@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
              $email = $_POST['email'];
              $password = $_POST['password'];    
         
-            $insertQuery = "INSERT INTO USER_MORALES (first_name, last_name, email, password)
+             $insertQuery = "INSERT INTO USER_MORALES (first_name, last_name, email, password)
                     VALUES ('$first_name', '$last_name', '$email', '$password')";
                     
              $insertResult = mysqli_query($connection, $insertQuery);
@@ -19,16 +19,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $passwordsUnequal = "Paswords do not match";
         }
     }
-    /*elseif(empty($_POST['delete_fname']) && empty($_POST['delete_lname'])){
-        $addUserError = "Every field must be filled to add a user";
-    }*/
-    if(!empty($_POST['delete_fname']) && !empty($_POST['delete_lname'])){
-    $delete_fname = $_POST['delete_fname'];
-    $delete_lname = $_POST['delete_lname'];    
-        
-    $deleteQuery = "DELETE FROM USER_MORALES WHERE first_name='$delete_fname' AND last_name='$delete_lname'";
 
-    $deleteResult = mysqli_query($connection, $deleteQuery);
+    if($_POST['row_action'] == "deleteUser"){
+        $user_id = $_POST['row_id'];
+        $deleteQuery = "DELETE FROM USER_MORALES WHERE user_id='$user_id'";
+        $deleteResult = mysqli_query($connection, $deleteQuery);
     }
 }
 
@@ -79,43 +74,14 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
         <input type="submit" value="Add">
     </form>
     <?php
-        /*if(isset($addUserError)){
-            echo '<p id="addUserError">' . $addUserError . '</p>';
-        }*/
         if (isset($passwordsUnequal)){
             echo '<p id="addUserError">' . $passwordsUnequal . '</p>';
         }
-    ?>
-    <?php
-    if($insertResult){
-        echo '<p id="successAdd">New User Added</p>';
-    }
-    /*
-    else {
-        echo '<p id="failAdd">Failed to add new user</p>';
-    }*/
-    ?>
-    </div>
-    <div class="align_center" id="removeUserFormDiv">
-    <h1>Remove a user</h1>
-    <p>All Fields must be filled to remove a user</p>
-    <form class="auto_margin" action="crud.php" method="POST">
-        <label for="delete_fname">First Name</label>
-        <input type="text" id="delete_fname" name="delete_fname"><br>
 
-        <label for="delete_lname">Last Name</label>
-        <input type="text" id="delete_lname" name="delete_lname"><br>
+         if($insertResult){
+            echo '<p id="successAdd">New User Added</p>';
+        }
 
-        <input type="submit" value="Delete">
-    </form>
-    <?php
-    if($deleteResult){
-        echo '<p id="successDelete">User Deleted</p>';
-    }
-    /*
-    else {
-        echo '<p id="failDelete">Failed to delete</p>';
-    }*/
     ?>
     </div>
     <div class="align_center" id="outputListDiv">
@@ -123,10 +89,14 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
     <table class="auto_margin">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
                 <th>Password</th>
+                <th>Update</th>
+                <th>Delete</th>
+                <th>Test</th>
             </tr>
         </thead>
         <tbody>
@@ -137,10 +107,21 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
     
                  foreach($rows as $row){
                       echo "<tr>
+                         <td>$row[0]</td>
                          <td>$row[1]</td>
                          <td>$row[2]</td>
                          <td>$row[3]</td>
                          <td>$row[4]</td>
+                         <form action=\"update_user.php\" method=\"GET\">
+                         <input type=\"hidden\" name=\"row_id\" value=\"$row[0]\">
+                         <td><input type=\"submit\" value=\"Update\"></td>
+                         </form>
+                         <form action=\"crud.php\" method=\"POST\">
+                         <input type=\"hidden\" name=\"row_id\" value=\"$row[0]\">
+                         <input type=\"hidden\" name=\"row_action\" value=\"deleteUser\">
+                         <td><input type=\"submit\" value=\"Delete\"></td>
+                         </form>
+                         <td><a href=\"update_user.php?id=$row[0]\">Link</a></td>
                          </tr>";
                     }
                  }
