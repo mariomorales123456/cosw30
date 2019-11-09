@@ -1,0 +1,51 @@
+        .auto_margin{
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+        body{
+            background-color: #f2f6f5;
+        }
+        .fg{
+            background-color: #c8dad3;
+            padding: 1em;
+            margin: 0.5em;
+            border-radius: 0.3em;
+            overflow-x: auto;
+            text-align: center;
+        }
+        .cssTable{
+            display: table;
+        }
+        .cssRow {
+            display: table-row;
+            
+        }
+        .cssRow label { 
+            display: table-cell; 
+            text-align: left;
+            padding: 0.3em;
+        }
+        .cssRow input { 
+            display: table-cell; 
+        }
+        .submitBtn{
+            width: 100%;
+            margin: 0.5em 0;
+        }
+        input{
+            border-radius: 0.3em;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        .row{
+            background-color: #f2f6f5;
+        }
+        .row:nth-child(even){
+            background-color: #93b5b3;
+        }
+        th, td{
+            padding: 0.5em;
+        }
