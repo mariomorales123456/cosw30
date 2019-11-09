@@ -38,41 +38,92 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
 <head>
     <title>My First CRUD</title>
     <style>
-        .align_center
-        {
-            text-align: center;
-        }
-        .auto_margin
-        {
+        .auto_margin{
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
             text-align: left;
         }
+        .bg{
+            background-color: #f2f6f5;
+        }
+        .fg{
+            background-color: #c8dad3;
+            padding: 1em;
+            margin: 0.5em;
+            border-radius: 0.3em;
+            overflow-x: auto;
+            text-align: center;
+        }
+        .cssTable{
+            display: table;
+        }
+        .cssRow {
+            display: table-row;
+            
+        }
+        .cssRow label { 
+            display: table-cell; 
+            text-align: left;
+            padding: 0.3em;
+        }
+        .cssRow input { 
+            display: table-cell; 
+        }
+        .submitBtn{
+            width: 100%;
+            margin: 0.5em 0;
+        }
+        input{
+            border-radius: 0.3em;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        .row{
+            background-color: #f2f6f5;
+        }
+        .row:nth-child(even){
+            background-color: #93b5b3;
+        }
+        th, td{
+            padding: 0.5em;
+        }
     </style>
 </head>
-<body>
-    <div class="align_center" id="adduserFormDiv">
+<body class="bg">
+    <div class="fg" id="adduserFormDiv">
     <h1>Create a New User</h1>
     <p>All fields must be filled to add a user</p>
-    <form class="auto_margin" action="crud.php" method="POST">
+    <div class="auto_margin">
+    <form action="crud.php" method="POST">
+        <div class="cssTable">
+        <div class="cssRow">
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name"><br>
-
+        </div>
+        <div class="cssRow">
         <label for="last_name">Last Name</label>
         <input type="text" id="last_name" name="last_name"><br>
-
+        </div>
+        <div class="cssRow">
         <label for="email">Email</label>
         <input type="email" id="email" name="email"><br>
-
+        </div>
+        <div class="cssRow">
         <label for="password">Password</label>
         <input type="password" id="password" name="password"><br>
-
+        </div>
+        <div class="cssRow">
         <label for="confirm_password">Confirm Password</label>
         <input type="password" id="confirm_password" name="confirm_password"><br>
-
-        <input type="submit" value="Add">
+        </div>
+        </div>
+        <div>
+        <input class="submitBtn" type="submit" value="Add">
+        </div>
     </form>
+    </div>
     <?php
         if (isset($passwordsUnequal)){
             echo '<p id="addUserError">' . $passwordsUnequal . '</p>';
@@ -84,11 +135,11 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
 
     ?>
     </div>
-    <div class="align_center" id="outputListDiv">
-    <h2>List of Users</h2>
+    <div class="fg" id="outputListDiv">
+    <h1>List of Users</h1>
     <table class="auto_margin">
         <thead>
-            <tr>
+            <tr id="theader">
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -105,7 +156,7 @@ $selectAllResult = mysqli_query($connection, $selectAllQuery);
                  $rows = mysqli_fetch_all($selectAllResult);
     
                  foreach($rows as $row){
-                      echo "<tr>
+                      echo "<tr class=\"row\">
                          <td>$row[0]</td>
                          <td>$row[1]</td>
                          <td>$row[2]</td>
